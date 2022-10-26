@@ -36,6 +36,9 @@
             "manage-specialty": "Manage specialities",
             "handbook": "Handbook",
             "manage-handbook": "Manage handbook"
+        },
+        "doctor": {
+            "manage-schedule": "Manage Doctor's schedule"
         }
     },
 
@@ -53,5 +56,27 @@
         "image": "Image",
         "save": "Save",
         "edit": "Edit"
+    },
+
+    "homepage": {
+        "outstanding-doctor": "Last week's featured doctor",
+        "more-infor": "More Infor"
+    },
+
+    "manage-schedule": {
+        "title": "Manage doctor's examination plan",
+        "choose-doctor": "Choose doctor",
+        "choose-date": "Choose date",
+        "save": "Save infor"  
+    },
+
+    "patient": {
+        "detail-doctor": {
+            "schedule": "Examination schedule",
+            "no-schedule": "There is no appointment during this time, please choose another time!",
+            "choose": "Choose",
+            "book-free": "and book (free)"
+        }
     }
+
 }

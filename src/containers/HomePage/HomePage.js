@@ -15,7 +15,7 @@ class HomePage extends Component {
     render() {
         const settings = {
             dots: true,
-            infinite: true,
+            infinite: false,
             speed: 500,
             slidesToShow: 4,
             slidesToScroll: 1,
@@ -49,7 +49,9 @@ class HomePage extends Component {
           };
        return(
         <div>
-            <HomeHeader/>
+            <HomeHeader
+              isShowBanner={true}
+            />
             <Specialty
                 settings={settings}
             />
@@ -57,8 +59,7 @@ class HomePage extends Component {
                 settings={settings}
             />
             <OutStandingDoctor 
-                settings={settings}
-                
+                settings={settings}   
             />
             <HandBook/>
 

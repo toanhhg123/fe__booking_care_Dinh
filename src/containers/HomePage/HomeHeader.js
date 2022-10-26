@@ -5,11 +5,18 @@ import { connect } from 'react-redux';
 import { LANGUAGES } from '../../utils/constant';
 import './HomeHeader.scss';
 import {changeLanguageApp} from '../../store/actions/appActions';
+// import {withRouter} from 'react-router';
 
 class HomeHeader extends Component {
 
     changeLanguage = (language) => {
        this.props.changeLanguageAppRedux(language)
+    }
+
+    returnToHome = () => {
+        if(this.props.history){
+            this.props.history.push(`/home`)
+        }
     }
 
     render() {
@@ -20,7 +27,7 @@ class HomeHeader extends Component {
             <div className='home-header-content'>
                 <div className='left-content'>
                     <i className='fas fa-bars'></i>
-                    <div className='header-logo'>LOGO</div>
+                    <div className='header-logo' onClick={() => this.returnToHome()}>LOGO</div>
                 </div>
                 <div className='center-content'>
                     <div className='child-content'>
@@ -53,7 +60,8 @@ class HomeHeader extends Component {
                 </div>
             </div>
             </div>
-            <div className='home-header-banner'>
+            {this.props.isShowBanner === true &&
+                <div className='home-header-banner'>
                 <div className='content-up'>
                     <div className='title1'><FormattedMessage id="banner.title1"/></div>
                     <div className='title2'><FormattedMessage id="banner.title2"/></div>
@@ -91,6 +99,7 @@ class HomeHeader extends Component {
                     </div>
                 </div>
             </div>
+            }
         </React.Fragment>
        )
     }
