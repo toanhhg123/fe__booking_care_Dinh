@@ -82,7 +82,7 @@ class ManageDoctor extends Component {
         let {hasOldData} = this.state;
         this.props.saveDetailDoctor({
             contentHTML: this.state.contentHTML,
-            contentMarkdown: this.statecontentMarkdown,
+            contentMarkdown: this.state.contentMarkdown,
             description: this.state.description,
             doctorId: this.state.selectedOption.value,
             action: hasOldData === true ? CRUD_ACTIONS.EDIT : CRUD_ACTIONS.CREATE

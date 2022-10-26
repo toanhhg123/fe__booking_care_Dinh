@@ -17,6 +17,7 @@ class ProductManage extends Component {
         this.state={
             genderArr: [],
             positionArr: [],
+            positionId: '',
             roleArr: [],
             previewImgURL: '',
             isOpen: false,
@@ -28,8 +29,7 @@ class ProductManage extends Component {
             phoneNumber: '',
             address: '',
             gender: '',
-            position: '',
-            role: '',
+            roleId: '',
             avatar: '',
 
             action: '',
@@ -88,6 +88,7 @@ class ProductManage extends Component {
                 previewImgURL: '',
             })
         }
+        console.log({state:this.state})
     }
 
     handleOnchangeImage = async (event) => {
@@ -129,8 +130,9 @@ class ProductManage extends Component {
                 phonenumber: this.state.phoneNumber,
                 gender: this.state.gender,
                 roleId: this.state.role,
-                positionId: this.state.position,
+                positionId: this.state.positionId,
                 avatar: this.state.avatar,
+
             })
         }
 
@@ -170,13 +172,15 @@ class ProductManage extends Component {
         let copyState = {...this.state}
         copyState[id] = event.target.value;
         this.setState({
-            ...copyState
+            ...copyState,
+            
         }, () => {
             console.log('check input onChange: ', this.state)
         })
     }
 
     handleEditUserFromParent = (user) => {
+        console.log({user});
         let imageBase64 = '';
         if(user.image) {
             imageBase64 = new Buffer(user.image, 'base64').toString('binary');
@@ -200,14 +204,16 @@ class ProductManage extends Component {
     }
 
     render() {
-        console.log('check state: ',this.state)
+        let positionId = this.state.positionId;
+        console.log({positionId});
         let genders = this.state.genderArr;
         let positions = this.state.positionArr;
         let roles = this.state.roleArr;
         let language =  this.props.language;
         let isGetGenders = this.state.isLoadingGender;
-        let { email, password, firstName, lastName, phoneNumber, address, gender, position, role, } = this.state;
+        let { email, password, firstName, lastName, phoneNumber, address, gender, roleId } = this.state;
 
+        console.log({positionId});
         return (
             <div className="user-redux-container">
                 <div className='title'>
@@ -265,13 +271,12 @@ class ProductManage extends Component {
                             <div className='col-3'>
                                 <label><FormattedMessage id='manage-user.gender'/></label>
                                 <select className="form-control"
-                                    value={gender}
                                     onChange={(event) => {this.onChangeInput(event, 'gender')}}
                                 >
                                     {genders && genders.length > 0 && 
                                         genders.map((item, index) => {
                                             return(
-                                                <option key={index} value={item.keyMap}>{language === LANGUAGES.VI ? item.valueVi : item.valueEn}</option>
+                                                <option selected={item.keyMap===gender} key={index} value={item.keyMap}>{language === LANGUAGES.VI ? item.valueVi : item.valueEn}</option>
                                             )
                                         })
                                     }
@@ -280,13 +285,12 @@ class ProductManage extends Component {
                             <div className='col-3'>
                                 <label><FormattedMessage id='manage-user.position'/></label>
                                 <select className="form-control"
-                                    value={position}
-                                    onChange={(event) => {this.onChangeInput(event, 'position')}}
+                                    onChange={(event) => {this.onChangeInput(event, 'positionId')}}
                                 >
                                     {positions && positions.length > 0 && 
                                         positions.map((item, index) => {
                                             return(
-                                                <option key={index} value={item.keyMap}>{language === LANGUAGES.VI ? item.valueVi : item.valueEn}</option>
+                                                <option  selected={item.keyMap===positionId} key={index} value={item.keyMap}>{language === LANGUAGES.VI ? item.valueVi : item.valueEn}</option>
                                             )
                                         })
                                     }
@@ -295,13 +299,12 @@ class ProductManage extends Component {
                             <div className='col-3'>
                                 <label><FormattedMessage id='manage-user.role'/></label>
                                 <select className="form-control"
-                                    onChange={(event) => {this.onChangeInput(event, 'role')}}
-                                    value={role}
+                                    onChange={(event) => {this.onChangeInput(event, 'roleId')}}
                                 >
                                     {roles && roles.length > 0 && 
                                         roles.map((item, index) => {
                                             return(
-                                                <option key={index} value={item.keyMap}>{language === LANGUAGES.VI ? item.valueVi : item.valueEn}</option>
+                                                <option selected={item.keyMap===roleId} key={index} value={item.keyMap}>{language === LANGUAGES.VI ? item.valueVi : item.valueEn}</option>
                                             )
                                         })
                                     }
