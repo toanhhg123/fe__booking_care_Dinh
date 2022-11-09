@@ -60,7 +60,8 @@
 
     "homepage": {
         "outstanding-doctor": "Last week's featured doctor",
-        "more-infor": "More Infor"
+        "more-infor": "More Infor",
+        "specialty-popular": "Popular Specialties"
     },
 
     "manage-schedule": {
@@ -76,6 +77,44 @@
             "no-schedule": "There is no appointment during this time, please choose another time!",
             "choose": "Choose",
             "book-free": "and book (free)"
+        },
+        "extra-infor-doctor": {
+            "text-address": "Address Examination",
+            "price": "Examination price",
+            "detail": "See details",
+            "payment": "Patients can pay the cost in the form of:",
+            "hide-price": "Hide price lists"
+        },
+        "booking-modal": {
+            "title": "Medical appointment information",
+            "fullName": "Fullname",
+            "phoneNumber": "Phone Number",
+            "email": "Email",
+            "address": "Address",
+            "reason": "Reason",
+            "birthday": "Birthday",
+            "gender": "Gender",
+            "btnConfirm": "Confirm",
+            "btnCancel": "Cancel",
+            "priceBooking": "Free booking",
+            "price": "Price: "
+        }
+    },
+    "admin": {
+        "manage-doctor": {
+            "title": "Create more doctor information",
+            "select-doctor": "Choosing a doctor",
+            "intro": "Introductory information",
+            "add": "Create infor",
+            "save": "Save",
+            "price": "Price",
+            "payment": "Payment",
+            "province": "Province",
+            "nameClinic": "Clinic's name",
+            "addressClinic": "Clinic's address",
+            "note": "Note",
+            "specialty": "Specialty",
+            "select-clinic": "Clinic"
         }
     }
 
