@@ -87,6 +87,7 @@ class ManageClinic extends Component {
             <input
               className="form-control-file"
               type="file"
+              // value={this.state.imageBase64}
               onChange={(event) => this.handleOnchangeImage(event)}
             />
           </div>
