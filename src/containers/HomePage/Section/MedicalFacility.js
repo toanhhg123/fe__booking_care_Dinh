@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import Slider from "react-slick";
-import "./MedicalFacility.scss";
+import "./medicalFacility.scss";
 import { withRouter } from "react-router";
 import { getAllClinic } from "../../../services/userService";
 

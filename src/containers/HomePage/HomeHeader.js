@@ -5,9 +5,16 @@ import { connect } from "react-redux";
 import { LANGUAGES } from "../../utils/constant";
 import "./HomeHeader.scss";
 import { changeLanguageApp } from "../../store/actions/appActions";
+import Modal from "react-bootstrap/Modal";
+import ModalCard from "../../components/ModalCard";
+
 // import {withRouter} from 'react-router';
 
 class HomeHeader extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { show: false, data: [], title: "Doctors" };
+  }
   changeLanguage = (language) => {
     this.props.changeLanguageAppRedux(language);
   };
@@ -18,10 +25,53 @@ class HomeHeader extends Component {
     }
   };
 
+  handleData = async (type) => {
+    switch (type) {
+      case "DOCTOR": {
+        const res = [];
+        const data = res.map((x) => ({}));
+
+        this.setState({
+          ...this.state,
+          title: "Bac Si",
+          show: true,
+          data,
+        });
+        break;
+      }
+
+      case "HEALTH": {
+        const res = [];
+        const data = res.map((x) => ({}));
+
+        this.setState({
+          ...this.state,
+          title: "Cơ sở y tế",
+          show: true,
+          data,
+        });
+        break;
+      }
+
+      default: {
+        break;
+      }
+    }
+  };
+
   render() {
     let language = this.props.language;
+    const { show, data, title } = this.state;
     return (
       <React.Fragment>
+        <ModalCard
+          show={show}
+          title={title}
+          data={data}
+          setShow={(check) => {
+            this.setState({ ...this.setState, show: check });
+          }}
+        />
         <div className="home-header-container">
           <div className="home-header-content">
             <div className="left-content">
@@ -30,8 +80,12 @@ class HomeHeader extends Component {
                 LOGO
               </div>
             </div>
+
             <div className="center-content">
-              <div className="child-content">
+              <div
+                className="child-content"
+                onClick={() => this.handleData("DOCTOR")}
+              >
                 <div>
                   <b>
                     <FormattedMessage id="homeheader.speciality" />
@@ -41,7 +95,10 @@ class HomeHeader extends Component {
                   <FormattedMessage id="homeheader.searchdoctor" />
                 </div>
               </div>
-              <div className="child-content">
+              <div
+                className="child-content"
+                onClick={() => this.handleData("HEALTH")}
+              >
                 <div>
                   <b>
                     <FormattedMessage id="homeheader.healthy-facility" />
