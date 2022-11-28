@@ -28,8 +28,8 @@ class ProductManage extends Component {
       phoneNumber: "",
       address: "",
       gender: "",
-      position: "",
-      role: "",
+      positionId: "",
+      roleId: "",
       avatar: "",
 
       action: "",
@@ -131,8 +131,8 @@ class ProductManage extends Component {
         address: this.state.address,
         phonenumber: this.state.phoneNumber,
         gender: this.state.gender,
-        roleId: this.state.role,
-        positionId: this.state.position,
+        roleId: this.state.roleId,
+        positionId: this.state.positionId,
         avatar: this.state.avatar,
       });
     }
@@ -148,8 +148,8 @@ class ProductManage extends Component {
         address: this.state.address,
         phonenumber: this.state.phoneNumber,
         gender: this.state.gender,
-        roleId: this.state.role,
-        positionId: this.state.position,
+        roleId: this.state.roleId,
+        positionId: this.state.positionId,
         avatar: this.state.avatar,
       });
     }
@@ -228,11 +228,11 @@ class ProductManage extends Component {
       phoneNumber,
       address,
       gender,
-      position,
-      role,
+      // position,
+      roleId,
     } = this.state;
 
-    console.log({ positionId });
+    console.log({ roleId });
     return (
       <div className="user-redux-container">
         <div className="title">User Redux</div>
@@ -361,9 +361,9 @@ class ProductManage extends Component {
                 </label>
                 <select
                   className="form-control"
-                  value={position}
+                  // value={position}
                   onChange={(event) => {
-                    this.onChangeInput(event, "position");
+                    this.onChangeInput(event, "positionId");
                   }}
                 >
                   {positions &&
@@ -371,7 +371,7 @@ class ProductManage extends Component {
                     positions.map((item, index) => {
                       return (
                         <option
-                          // selected={item.keyMap === positionId}
+                          selected={item.keyMap === positionId}
                           key={index}
                           value={item.keyMap}
                         >
@@ -388,10 +388,10 @@ class ProductManage extends Component {
                   <FormattedMessage id="manage-user.role" />
                 </label>
                 <select
-                  value={role}
+                  // value={role}
                   className="form-control"
                   onChange={(event) => {
-                    this.onChangeInput(event, "role");
+                    this.onChangeInput(event, "roleId");
                   }}
                 >
                   {roles &&
@@ -399,7 +399,7 @@ class ProductManage extends Component {
                     roles.map((item, index) => {
                       return (
                         <option
-                          // selected={item.keyMap === roleId}
+                          selected={item.keyMap === roleId}
                           key={index}
                           value={item.keyMap}
                         >

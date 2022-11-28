@@ -1,5 +1,6 @@
 import { Component } from "react";
 import Modal from "react-bootstrap/Modal";
+import { Link } from "react-router-dom";
 import { path } from "../utils/constant";
 
 class ModalCard extends Component {
@@ -9,7 +10,6 @@ class ModalCard extends Component {
   }
   render() {
     const { show, setShow, data, title } = this.props;
-    console.log(this.props);
     return (
       <Modal show={show} fullscreen={true} onHide={() => setShow(false)}>
         <Modal.Header closeButton>
@@ -20,7 +20,14 @@ class ModalCard extends Component {
             ...data.map((x, i) => (
               <div key={i} className="d-flex border shadow p-1 round">
                 <img
-                  width={200}
+                  width={300}
+                  height={200}
+                  style={{
+                    backgroundImage: `url(${x.img})`,
+                    backgroundPosition: "center",
+                    backgroundRepeat: "no-repeat",
+                    backgroundSize: "cover",
+                  }}
                   src={data.img}
                   onError={({ currentTarget }) => {
                     currentTarget.src =
@@ -28,7 +35,9 @@ class ModalCard extends Component {
                   }}
                   alt=""
                 />
-                <p className="fs-5 mx-4">{x.title} </p>
+                <Link to={`${x.to}/${x.id}`} className="fs-5 mx-4">
+                  {x.title}{" "}
+                </Link>
                 <span>{x.desc}</span>
               </div>
             )),

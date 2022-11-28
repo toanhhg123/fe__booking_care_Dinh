@@ -54,20 +54,17 @@
         width: 70%;
         margin: 0 auto;
         .specialty-customize{
-            // width: 300px !important;
-            // margin: 0 10px;
+            
             .bg-image{
                 // border: 1px solid red;
                 // width: 300px;
                 height: 200px;
-                // background: url('../../assets/specialty/tim-mach.jpg');
                 background-position: center center;
                 background-repeat: no-repeat;
                 background-size: cover;
                 background-color: #eee;
 
                 &.section-outstanding-doctor{
-                    // background-image: url('../../assets/outstanding-doctor/bac-si.jpg');
                     width: 120px;
                     height: 120px;
                     border-radius: 50%;
@@ -101,11 +98,13 @@
             padding-top: 30px;
 
             .title-section{
+                margin-left: 297px;
                 font-size: 22px;
                 font-weight: 600;
             }
 
             .btn-section{
+                margin-right: 297px;
                 float: right;
                 padding: 10px 15px;
                 border: none;

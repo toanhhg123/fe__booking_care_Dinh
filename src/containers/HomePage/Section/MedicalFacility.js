@@ -34,7 +34,7 @@ class MedicalFacility extends Component {
     let { dataClinics } = this.state;
 
     return (
-      <div className="section-share section-medical-facility">
+      <div className="section-share section-specialty section-medical-facility">
         <div className="section-container">
           <div className="section-header">
             <span className="title-section">Cở sở y tế nổi bật</span>
@@ -47,16 +47,15 @@ class MedicalFacility extends Component {
                 dataClinics.map((item, index) => {
                   return (
                     <div
-                      className="specialty-customize clinic-child"
+                      className="specialty-customize specialty-child clinic-child"
                       key={index}
                       onClick={() => this.handleViewDetailClinic(item)}
                     >
                       <div
-                        className="bg-image section-medical-facility"
+                        className="bg-image section-specialty section-medical-facility"
                         style={{ backgroundImage: `url(${item.image})` }}
-                      >
-                        <div className="clinic-name">{item.name}</div>
-                      </div>
+                      />
+                      <div className="clinic-name">{item.name}</div>
                     </div>
                   );
                 })}

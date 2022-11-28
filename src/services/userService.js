@@ -107,6 +107,13 @@ const postSendRemedy = (data) => {
   return axios.post(`/api/send-remedy`, data);
 };
 
+const getCommentByUserId = (id) => {
+  return axios.get(`/api/get-comment-by-userId?userId=${id}`);
+};
+
+const createComment = ({ userId, text, name }) => {
+  return axios.post(`/api/create-new-comment`, { userId, text, name });
+};
 export {
   handleLoginAPI,
   getAllUsers,
@@ -132,4 +139,6 @@ export {
   getDetailClinicById,
   getAllPatientForDoctor,
   postSendRemedy,
+  getCommentByUserId,
+  createComment,
 };

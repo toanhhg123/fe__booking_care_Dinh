@@ -1,11 +1,15 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { getDetailInforDoctor } from "../../../services/userService";
+import {
+  createComment,
+  getDetailInforDoctor,
+} from "../../../services/userService";
 import "./DetailDoctor.scss";
 import HomeHeader from "../../HomePage/HomeHeader";
 import { LANGUAGES } from "../../../utils/constant";
 import DoctorSchedule from "./DoctorSchedule";
 import DoctorExtraInfor from "./DoctorExtraInfor";
+import { getCommentByUserId } from "../../../services/userService";
 
 class detailDoctor extends Component {
   constructor(props) {
@@ -13,6 +17,11 @@ class detailDoctor extends Component {
     this.state = {
       detailDoctor: {},
       currentDoctorId: -1,
+      commnets: [],
+      userComment: {
+        name: "",
+        text: "",
+      },
     };
   }
 
@@ -21,6 +30,12 @@ class detailDoctor extends Component {
       let id = this.props.match.params.id;
       this.setState({
         currentDoctorId: id,
+      });
+
+      getCommentByUserId(this.props.match.params.id).then((res) => {
+        this.setState({
+          commnets: res,
+        });
       });
 
       let res = await getDetailInforDoctor(id);
@@ -46,6 +61,18 @@ class detailDoctor extends Component {
       // eslint-disable-next-line no-unused-vars
       nameEn = `${detailDoctor.positionData.valueEn}, ${detailDoctor.firstName} ${detailDoctor.lastName}`;
     }
+
+    const handleSubmitComment = (e) => {
+      e.preventDefault();
+      createComment({
+        userId: this.props.match.params.id,
+        ...this.state.userComment,
+      }).then((res) => {
+        this.setState({
+          commnets: [res, ...this.state.commnets],
+        });
+      });
+    };
 
     return (
       <>
@@ -94,7 +121,49 @@ class detailDoctor extends Component {
                 ></div>
               )}
           </div>
-          <div className="comment-doctor"></div>
+          <div className="container comment-doctor">
+            <h3 className="p-3">Comments</h3>
+            {this.state.commnets.map((x) => (
+              <div className="alert alert-primary" key={x.id} role="alert">
+                <h5>name: {x.name}</h5>
+                {x.text}
+              </div>
+            ))}
+            <form className="my-5" onSubmit={handleSubmitComment}>
+              <div className="form-group">
+                <label for="exampleFormControlTextarea1">Name:</label>
+                <input
+                  className="form-control"
+                  value={this.state.userComment.name}
+                  onChange={(e) =>
+                    this.setState({
+                      userComment: {
+                        ...this.state.userComment,
+                        name: e.target.value,
+                      },
+                    })
+                  }
+                />
+              </div>
+              <div className="form-group">
+                <label for="exampleFormControlTextarea1">text</label>
+                <textarea
+                  className="form-control"
+                  id="exampleFormControlTextarea1"
+                  rows="3"
+                  onChange={(e) =>
+                    this.setState({
+                      userComment: {
+                        ...this.state.userComment,
+                        text: e.target.value,
+                      },
+                    })
+                  }
+                ></textarea>
+              </div>
+              <button className="btn btn-primary my-2">send</button>
+            </form>
+          </div>
         </div>
       </>
     );

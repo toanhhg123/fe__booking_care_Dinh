@@ -5,9 +5,12 @@ import { connect } from "react-redux";
 import { LANGUAGES } from "../../utils/constant";
 import "./HomeHeader.scss";
 import { changeLanguageApp } from "../../store/actions/appActions";
-import Modal from "react-bootstrap/Modal";
+// import Modal from "react-bootstrap/Modal";
 import ModalCard from "../../components/ModalCard";
-
+// import axios from "axios";
+import { getAllClinic, getAllSpecialty } from "../../services/userService";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 // import {withRouter} from 'react-router';
 
 class HomeHeader extends Component {
@@ -28,12 +31,18 @@ class HomeHeader extends Component {
   handleData = async (type) => {
     switch (type) {
       case "DOCTOR": {
-        const res = [];
-        const data = res.map((x) => ({}));
+        const res = await getAllSpecialty();
+        console.log("check db: ", res);
+        const data = res.data.map((x) => ({
+          title: x.name,
+          img: x.image,
+          id: x.id,
+          to: "/detail-specialty",
+        }));
 
         this.setState({
           ...this.state,
-          title: "Bac Si",
+          title: "Chuyên Khoa",
           show: true,
           data,
         });
@@ -41,8 +50,13 @@ class HomeHeader extends Component {
       }
 
       case "HEALTH": {
-        const res = [];
-        const data = res.map((x) => ({}));
+        const res = await getAllClinic();
+        const data = res.data.map((x) => ({
+          title: x.name,
+          img: x.image,
+          id: x.id,
+          to: "/detail-clinic",
+        }));
 
         this.setState({
           ...this.state,
@@ -62,6 +76,8 @@ class HomeHeader extends Component {
   render() {
     let language = this.props.language;
     const { show, data, title } = this.state;
+
+    console.log({ title });
     return (
       <React.Fragment>
         <ModalCard
